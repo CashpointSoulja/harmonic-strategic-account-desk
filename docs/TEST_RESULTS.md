@@ -110,3 +110,20 @@ $ npm run e2e
 - Live deployed URL checks (signed-out, direct refresh, mobile): pending deployment.
 - Assistive-technology testing with a real screen reader.
 - Browsers other than Chromium.
+
+## Walkthrough video validation (2026-10-06)
+
+File: `docs/video/strategic-account-desk-walkthrough.mp4`. Output of `ffprobe` and `ffmpeg` filters on the final file:
+
+```
+stream|codec_name=h264|codec_type=video|width=1080|height=1920
+stream|codec_name=aac|codec_type=audio|sample_rate=44100
+format|duration=136.696000|size=29466530
+volumedetect: mean_volume -17.4 dB, max_volume 0.0 dB
+silencedetect (-45 dB, >=1.0 s): one gap, 110.185 to 111.2 s (1.02 s, scene change)
+```
+
+- Footage: real rendered UI recorded from a fresh demo state, highlighted cursor driven by real mouse events, cursor-centred zoom-ins on seven moments.
+- Captions: 49 cues burned in, generated from the same narration text as the audio; also shipped as `.srt`.
+- Frames sampled at 12, 26, 38, 47, 52, 57, 66, 82, 87, 90, 97, 103.8, 107, 110.6, 120 and 130 s and inspected: capacity move to 9 of 9, blocked public-affiliation route toast, verified route ticket and cooldown, stale signal, brief gaps on an overclaim then recompose, stalled campaign moved to Find route, 8 of 8 trust tests and denominators, first 30 days.
+- Container tags hold no encoder, path or tool strings.

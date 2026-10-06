@@ -19,6 +19,10 @@ A working desk for the Strategic GTM Associate role at Harmonic Security: the pe
 | **Trust & metrics** | Eight live tests that try to break the desk's rules, and measures with numerators, denominators and windows. Meetings and pipeline are marked Not measured |
 | **Why & 30 days** | 30-second explanation and a first-30-days plan |
 
+## Walkthrough
+
+A 2:17 vertical walkthrough of the real UI with captions: [`docs/video/strategic-account-desk-walkthrough.mp4`](docs/video/strategic-account-desk-walkthrough.mp4) ([transcript](docs/video/TRANSCRIPT.md)).
+
 ## Data
 
 - **JPMorganChase** is the one real account, built only from its own public pages (read 2026-10-06). It is a **prospect hypothesis**: not a Harmonic customer and not a confirmed target.

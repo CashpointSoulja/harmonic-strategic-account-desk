@@ -1,0 +1,196 @@
+1
+00:00:00,200 --> 00:00:02,419
+This is the Strategic Account Desk,
+
+2
+00:00:02,439 --> 00:00:06,193
+an independent concept I built for Harmonic's Strategic GTM
+
+3
+00:00:06,213 --> 00:00:07,152
+Associate role.
+
+4
+00:00:07,172 --> 00:00:10,926
+It's the Monday view: three seller lanes, three slots each,
+
+5
+00:00:10,946 --> 00:00:12,269
+eight of nine active.
+
+6
+00:00:12,289 --> 00:00:15,724
+Fit, timing and route readiness are scored separately,
+
+7
+00:00:15,744 --> 00:00:17,387
+and unknown stays unknown.
+
+8
+00:00:18,107 --> 00:00:20,986
+Seller A is full, so Larchmont is parked.
+
+9
+00:00:21,006 --> 00:00:24,098
+Reactivating it into a full lane is refused.
+
+10
+00:00:24,118 --> 00:00:28,200
+Moving it to Seller C, who has room, fills the ninth slot.
+
+11
+00:00:28,920 --> 00:00:31,347
+JPMorganChase is the one real account.
+
+12
+00:00:31,367 --> 00:00:35,017
+It's a prospect hypothesis built only from the bank's own
+
+13
+00:00:35,037 --> 00:00:35,854
+public pages.
+
+14
+00:00:35,874 --> 00:00:39,331
+Every sentence in the ledger carries its source, date,
+
+15
+00:00:39,351 --> 00:00:41,005
+confidence and provenance,
+
+16
+00:00:41,025 --> 00:00:44,353
+and the unmapped data governance seat stays unknown.
+
+17
+00:00:45,073 --> 00:00:47,544
+A shared investor isn't an introduction.
+
+18
+00:00:47,564 --> 00:00:49,910
+This route is public affiliation only,
+
+19
+00:00:49,930 --> 00:00:53,709
+so asking for an intro is blocked, whatever boxes get ticked.
+
+20
+00:00:54,429 --> 00:00:58,065
+Brightwater is a synthetic demo route with the relationship,
+
+21
+00:00:58,085 --> 00:01:01,661
+the introducer's permission and the recipient all verified.
+
+22
+00:01:01,681 --> 00:01:04,220
+The desk prepares an intro request ticket.
+
+23
+00:01:04,240 --> 00:01:05,195
+Nothing is sent.
+
+24
+00:01:05,915 --> 00:01:07,785
+Signals have a shelf life.
+
+25
+00:01:07,805 --> 00:01:11,490
+The CISO's 2025 supplier letter is past its window,
+
+26
+00:01:11,510 --> 00:01:14,615
+so it can't be the reason to reach out now.
+
+27
+00:01:14,635 --> 00:01:17,158
+Unsourced rumours are rejected too.
+
+28
+00:01:17,878 --> 00:01:21,081
+The brief is exactly five sentences: situation,
+
+29
+00:01:21,101 --> 00:01:23,824
+sourced trigger, stakeholder hypothesis,
+
+30
+00:01:23,844 --> 00:01:25,675
+route with its uncertainty,
+
+31
+00:01:25,695 --> 00:01:28,487
+and the next step with an owner and date.
+
+32
+00:01:28,507 --> 00:01:32,259
+If I claim a board member knows the CISO, it's blocked:
+
+33
+00:01:32,279 --> 00:01:35,413
+six sentences, and an unverified relationship.
+
+34
+00:01:35,433 --> 00:01:36,922
+Recompose restores it.
+
+35
+00:01:37,642 --> 00:01:41,179
+Meridian stalled after an event because no one owned the
+
+36
+00:01:41,199 --> 00:01:41,814
+follow-up.
+
+37
+00:01:41,834 --> 00:01:45,625
+It can't resume until it has an owner and a dated next step.
+
+38
+00:01:45,645 --> 00:01:48,419
+Assign Seller B, add the action, set a date,
+
+39
+00:01:48,439 --> 00:01:50,452
+and it moves back to find route.
+
+40
+00:01:51,172 --> 00:01:55,218
+The trust page tries to break the desk's own rules against live
+
+41
+00:01:55,238 --> 00:01:55,605
+state.
+
+42
+00:01:55,625 --> 00:01:56,960
+All eight tests pass.
+
+43
+00:01:56,980 --> 00:02:00,703
+Every measure shows its numerator, denominator and window.
+
+44
+00:02:00,723 --> 00:02:03,220
+Meetings and pipeline say not measured,
+
+45
+00:02:03,240 --> 00:02:04,963
+because they need CRM data.
+
+46
+00:02:05,683 --> 00:02:09,230
+That's the job as I'd run it: nine honest campaigns,
+
+47
+00:02:09,250 --> 00:02:12,660
+routes that hold up, and briefs a seller can send.
+
+48
+00:02:12,680 --> 00:02:14,787
+The first thirty days are here.
+
+49
+00:02:14,807 --> 00:02:16,159
+Thanks for watching.
+
