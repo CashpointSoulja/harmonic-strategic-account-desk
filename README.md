@@ -4,6 +4,8 @@
 
 A working desk for the Strategic GTM Associate role at Harmonic Security: the person who helps three strategic sellers win Fortune 100/250 accounts through warm routes, executive moments and sourced signals, not cold sequences. It is not a CRM, a lead scraper or an SDR sequencer. It sends nothing.
 
+**Live:** https://cashpointsoulja.github.io/harmonic-strategic-account-desk/
+
 ![Weekly desk, desktop](docs/screens/desktop-desk.png)
 
 ## What it does
@@ -38,7 +40,7 @@ npm run typecheck && npm run lint && npm test && npm run build
 npx playwright install chromium && npm run e2e
 ```
 
-Hash routes (`#/desk`, `#/brief/c-jpmc`) work on any static host. `.github/workflows/pages.yml` deploys to GitHub Pages when run manually.
+Hash routes (`#/desk`, `#/brief/c-jpmc`) work on any static host. `.github/workflows/pages.yml` can deploy to GitHub Pages when run manually; the live site is served from the `gh-pages` branch (a static `dist/` build).
 
 ## Docs
 

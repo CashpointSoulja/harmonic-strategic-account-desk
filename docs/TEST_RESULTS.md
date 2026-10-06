@@ -112,7 +112,6 @@ $ npm run e2e
 
 ## Not yet run
 
-- Live deployed URL checks (signed-out, direct refresh, mobile): pending deployment.
 - Assistive-technology testing with a real screen reader.
 - Browsers other than Chromium.
 
@@ -133,3 +132,32 @@ grep -c "Monday" captions: 0
 - Captions: 51 cues burned in, generated from the same narration text as the audio; also shipped as `.srt`.
 - Frames sampled and inspected: desk with coverage tags, Kestrel coverage zoom, capacity move to 9 of 9, blocked route toast, verified route ticket and cooldown, stale signal, brief gaps then recompose, stall moved to Find route, 9 of 9 trust tests and denominators, first 30 days.
 - Container tags hold no encoder, path or tool strings.
+
+## Live deployment checks (2026-10-06)
+
+URL: https://cashpointsoulja.github.io/harmonic-strategic-account-desk/ (GitHub Pages, `gh-pages` branch, root; static build of `build/strategic-account-desk` at fbb7e36). Checked with fresh Playwright Chromium contexts: no cookies, empty storage, no login.
+
+```text
+desktop #/desk: load 200 refresh 200 h1="This week" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/account: load 200 refresh 200 h1="Account map" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/routes: load 200 refresh 200 h1="Warm routes" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/signals: load 200 refresh 200 h1="Signal desk" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/brief: load 200 refresh 200 h1="Five-sentence brief" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/momentum: load 200 refresh 200 h1="Campaign momentum" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/trust: load 200 refresh 200 h1="Trust and measurement" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop #/value: load 200 refresh 200 h1="Why this desk, and the first 30 days" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+desktop Kestrel coverage label=1
+mobile #/desk: load 200 refresh 200 h1="This week" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/account: load 200 refresh 200 h1="Account map" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/routes: load 200 refresh 200 h1="Warm routes" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/signals: load 200 refresh 200 h1="Signal desk" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/brief: load 200 refresh 200 h1="Five-sentence brief" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/momentum: load 200 refresh 200 h1="Campaign momentum" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/trust: load 200 refresh 200 h1="Trust and measurement" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile #/value: load 200 refresh 200 h1="Why this desk, and the first 30 days" overflow=0px login=0 poppins=true logo=true axe=0 4xx=0 errors=0
+mobile Kestrel coverage label=1
+deep refresh h1: Five-sentence brief | JPMorganChase visible: true
+request hosts: cashpointsoulja.github.io
+```
+
+Desktop is 1366×900; mobile is 390×844 with touch at DPR 2. "refresh" is a direct reload of the same hash route. Fonts and logo load from the Pages sub-path, and every request goes to the Pages host only. Rendered desk and trust screenshots at both widths were inspected: Kestrel shows "Coverage 28% · 2 unknown", and the trust page reads 9 of 9 pass.
