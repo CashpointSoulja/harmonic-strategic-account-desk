@@ -16,7 +16,7 @@ A working desk for the Strategic GTM Associate role at Harmonic Security: the pe
 | **Signals** | Leadership, AI initiative, regulatory, event and news signals with source date, relevance and shelf life; stale, unsourced and duplicate signals are refused as triggers |
 | **Five-sentence brief** | Exactly five editable sentences: situation, sourced trigger, stakeholder hypothesis, route with uncertainty, next action with owner and date. Blocked with listed gaps when evidence is missing, stale or overclaimed |
 | **Momentum** | Stage state machine, failure reasons, a stalled campaign you can fix, event and introducer preparation tickets, local reminders, capacity board |
-| **Trust & metrics** | Eight live tests that try to break the desk's rules, and measures with numerators, denominators and windows. Meetings and pipeline are marked Not measured |
+| **Trust & metrics** | Nine live tests that try to break the desk's rules, and measures with numerators, denominators and windows. Meetings and pipeline are marked Not measured |
 | **Why & 30 days** | 30-second explanation and a first-30-days plan |
 
 ## Walkthrough

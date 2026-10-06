@@ -9,6 +9,6 @@ This desk is the notebook their helper keeps.
 - **The routes page** checks introductions. "We both know the same investor" is not the same as "she will introduce us." The desk won't let anyone ask for an introduction until the person introducing has said yes and we know exactly who we're being introduced to.
 - **The signals page** keeps news with a use-by date. Old news can't be the reason to call today.
 - **The brief** is five sentences, never four or six: what's going on, what just happened (with a link), who probably cares, how we'd get there and how sure we are, and who does what next by when.
-- **The trust page** tries to trick the desk on purpose and shows that it says no. It also counts honestly: "6 of 8," not "lots."
+- **The trust page** runs nine tests that try to trick the desk on purpose and shows that it says no, including checking that missing facts never make an account look more ready. It also counts honestly: "6 of 8," not "lots."
 
 Nothing is ever sent from the desk. It only prepares things for a person to check and send themselves.

@@ -23,3 +23,4 @@ Each maps to an automated check. U = unit (`test/domain.test.ts`), E = end-to-en
 | A17 | No horizontal overflow and no serious/critical axe violations on all 8 views at both widths | E per-view |
 | A18 | Skip link and rail are keyboard operable | E keyboard |
 | A19 | Measures show 6 / 8 owned; meetings and pipeline Not measured | U metrics; E trust |
+| A20 | Unknown parts add nothing and are not rescaled; coverage and Unknown count show beside every priority; removing evidence never raises priority (Kestrel 28, coverage 28%) | U incomplete evidence; E coverage; Trust test "Incomplete evidence never ranks higher" |

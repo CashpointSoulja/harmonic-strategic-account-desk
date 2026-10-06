@@ -38,7 +38,7 @@ Sending email, booking calendars, writing to a CRM, scraping leads, scoring indi
 | Signals | Leadership, AI initiative, regulatory, event, news; source date, relevance, shelf life, expiry; stale and unsupported rejection; dedupe; why-now and follow-on; public vs synthetic styling; add-signal form | `#/signals` |
 | Brief | Exactly five editable sentences; ready gate with listed evidence gaps; overclaim detector; copy and download; share mode | `#/brief/:campaign` |
 | Momentum | Stage state machine, failure reasons, owner/next/date/SLA editing, stall fix, event and introducer tickets, local reminders, capacity board | `#/momentum/:campaign` |
-| Trust & metrics | Eight live trust tests; nine measures with denominators and windows; CRM-dependent outcomes marked Not measured | `#/trust` |
+| Trust & metrics | Nine live trust tests, including incomplete evidence never ranking higher; nine measures with denominators and windows; CRM-dependent outcomes marked Not measured | `#/trust` |
 | Value | 30-second explanation, what it is not, first 30 days | `#/value` |
 | Data | Browser-local state, reset demo, share-mode export | header |
 
