@@ -244,3 +244,7 @@ textarea { resize: vertical; line-height: 1.5; }
   .top-actions { flex-wrap: wrap; }
   .desk-date { flex-basis: 100%; }
 }
+
+.prio-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.coverage-tag { font-size: 12px; font-weight: 600; color: var(--h-dark-green); background: #e3f4ee; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+.coverage-tag.is-partial { color: #7a3a00; background: #fff1de; }

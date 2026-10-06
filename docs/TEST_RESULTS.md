@@ -9,8 +9,8 @@ Run on 2026-10-06 on a Linux build machine, Node 22, Chromium (Playwright 1.47).
 | Typecheck (`tsc -b --noEmit`, strict) | Pass, 0 errors |
 | Lint (ESLint) | Pass, 0 problems |
 | Build (Vite) | Pass |
-| Unit (Vitest) | 19 / 19 pass |
-| End-to-end (Playwright, desktop 1366×900 + mobile 390×844) | 34 / 34 pass (17 tests × 2 viewports) |
+| Unit (Vitest) | 22 / 22 pass |
+| End-to-end (Playwright, desktop 1366×900 + mobile 390×844) | 36 / 36 pass (18 tests × 2 viewports) |
 | Horizontal overflow, 8 views × 2 widths | 0 px on all 16 |
 | Axe WCAG 2 A/AA, serious or critical | 0 on all 16 |
 | Visual inspection | All 16 screenshots in `docs/screens/` reviewed by eye |
@@ -19,6 +19,7 @@ Run on 2026-10-06 on a Linux build machine, Node 22, Chromium (Playwright 1.47).
 
 | Defect | Fix |
 | --- | --- |
+| Priority averaged over known parts only, so Kestrel (fit only, timing and route Unknown) showed 100 and outranked evidenced campaigns (found in review) | Unknown parts now add nothing and known weights are not rescaled; fit counts unknown factors as unearned; evidence coverage and the Unknown count show beside every priority and in exports; Kestrel now shows 28 at 28% coverage; new unit tests, an E2E test and a ninth trust test ("Incomplete evidence never ranks higher") |
 | Information icon rendered as a missing-glyph box (Poppins has no ⓘ) | Replaced with an inline SVG icon |
 | Hash navigation focused `<main>` and scrolled the page title under the sticky header | Focus with `preventScroll` and scroll to top on view change |
 | Technology page signal read as if published on the access date | Source title now says the page is undated and when it was read |
@@ -36,42 +37,44 @@ exit 0
 $ npm run lint
 exit 0
 $ npm run build
-computing gzip size...
 dist/index.html                                        0.73 kB │ gzip:  0.40 kB
 dist/assets/poppins-latin-500-normal-C8OXljZJ.woff2    7.75 kB
 dist/assets/poppins-latin-700-normal-Qrb0O0WB.woff2    7.82 kB
 dist/assets/poppins-latin-400-normal-cpxAROuN.woff2    7.88 kB
 dist/assets/poppins-latin-600-normal-zEkxB9Mr.woff2    8.00 kB
-dist/assets/index-CtOpR2Vm.css                        14.33 kB │ gzip:  3.77 kB
-dist/assets/index-B5Kvp_uR.js                        214.64 kB │ gzip: 68.40 kB
-✓ built in 5.50s
+dist/assets/index-VezNucIH.css                        14.62 kB │ gzip:  3.83 kB
+dist/assets/index-Cy0c0H4c.js                        216.05 kB │ gzip: 68.81 kB
+✓ built in 5.33s
 $ npm test
- ✓ test/domain.test.ts > weekly desk > has three sellers with two or three active campaigns each, nine slots total 2ms
- ✓ test/domain.test.ts > weekly desk > keeps unknown fit as unknown, not zero 0ms
- ✓ test/domain.test.ts > weekly desk > shows fit, timing and route separately with weights 11ms
- ✓ test/domain.test.ts > signals > rejects the 2025 supplier letter as stale and the rumour as unsupported 0ms
- ✓ test/domain.test.ts > signals > expires on the boundary day + 1 0ms
- ✓ test/domain.test.ts > signals > dedupes by account + source + normalised headline 0ms
- ✓ test/domain.test.ts > routes > blocks public affiliation and hypothesis routes even when boxes are ticked 0ms
- ✓ test/domain.test.ts > routes > clears the verified synthetic route and enforces the 30-day cooldown 0ms
- ✓ test/domain.test.ts > brief > counts sentences, ignoring abbreviations 1ms
- ✓ test/domain.test.ts > brief > composes exactly five sentences for every campaign 6ms
- ✓ test/domain.test.ts > brief > JPMorganChase brief cites a fresh public source, never the stale 2025 letter 1ms
- ✓ test/domain.test.ts > brief > blocks ready when the trigger is stale or a relationship is overclaimed 1ms
- ✓ test/domain.test.ts > campaign state machine > cannot resume a stalled campaign without owner and dated step 0ms
- ✓ test/domain.test.ts > campaign state machine > blocks capacity overflow for a parked campaign 0ms
- ✓ test/domain.test.ts > campaign state machine > prepares, never sends, an intro ticket for the verified route 1ms
- ✓ test/domain.test.ts > trust, metrics and export > passes every trust test on the seeded desk 11ms
- ✓ test/domain.test.ts > trust, metrics and export > reports denominators and refuses CRM outcomes 3ms
- ✓ test/domain.test.ts > trust, metrics and export > share mode strips internal notes and uncertain names 3ms
- ✓ test/domain.test.ts > local state > saves, loads and resets 1ms
+ ✓ test/domain.test.ts > weekly desk > has three sellers with two or three active campaigns each, nine slots total
+ ✓ test/domain.test.ts > weekly desk > keeps unknown fit as unknown, not zero
+ ✓ test/domain.test.ts > weekly desk > shows fit, timing and route separately with weights
+ ✓ test/domain.test.ts > signals > rejects the 2025 supplier letter as stale and the rumour as unsupported
+ ✓ test/domain.test.ts > signals > expires on the boundary day + 1
+ ✓ test/domain.test.ts > signals > dedupes by account + source + normalised headline
+ ✓ test/domain.test.ts > routes > blocks public affiliation and hypothesis routes even when boxes are ticked
+ ✓ test/domain.test.ts > routes > clears the verified synthetic route and enforces the 30-day cooldown
+ ✓ test/domain.test.ts > brief > counts sentences, ignoring abbreviations
+ ✓ test/domain.test.ts > brief > composes exactly five sentences for every campaign
+ ✓ test/domain.test.ts > brief > JPMorganChase brief cites a fresh public source, never the stale 2025 letter
+ ✓ test/domain.test.ts > brief > blocks ready when the trigger is stale or a relationship is overclaimed
+ ✓ test/domain.test.ts > campaign state machine > cannot resume a stalled campaign without owner and dated step
+ ✓ test/domain.test.ts > campaign state machine > blocks capacity overflow for a parked campaign
+ ✓ test/domain.test.ts > campaign state machine > prepares, never sends, an intro ticket for the verified route
+ ✓ test/domain.test.ts > trust, metrics and export > passes every trust test on the seeded desk
+ ✓ test/domain.test.ts > trust, metrics and export > reports denominators and refuses CRM outcomes
+ ✓ test/domain.test.ts > trust, metrics and export > share mode strips internal notes and uncertain names
+ ✓ test/domain.test.ts > local state > saves, loads and resets
+ ✓ test/domain.test.ts > incomplete evidence > unknown parts add nothing and never outrank evidenced campaigns
+ ✓ test/domain.test.ts > incomplete evidence > removing evidence cannot raise priority or coverage
+ ✓ test/domain.test.ts > incomplete evidence > fit counts unknown factors as unearned and reports coverage
  Test Files  1 passed (1)
-      Tests  19 passed (19)
+      Tests  22 passed (22)
 $ npm run e2e
-  ✓  2 [desktop] › desk.spec.ts:13:3 › desk: renders, no horizontal overflow, no serious axe violations
   ✓  1 [mobile] › desk.spec.ts:13:3 › desk: renders, no horizontal overflow, no serious axe violations
-  ✓  4 [mobile] › desk.spec.ts:13:3 › account/jpmc: renders, no horizontal overflow, no serious axe violations
-  ✓  3 [desktop] › desk.spec.ts:13:3 › account/jpmc: renders, no horizontal overflow, no serious axe violations
+  ✓  2 [desktop] › desk.spec.ts:13:3 › desk: renders, no horizontal overflow, no serious axe violations
+  ✓  3 [mobile] › desk.spec.ts:13:3 › account/jpmc: renders, no horizontal overflow, no serious axe violations
+  ✓  4 [desktop] › desk.spec.ts:13:3 › account/jpmc: renders, no horizontal overflow, no serious axe violations
   ✓  6 [desktop] › desk.spec.ts:13:3 › routes: renders, no horizontal overflow, no serious axe violations
   ✓  5 [mobile] › desk.spec.ts:13:3 › routes: renders, no horizontal overflow, no serious axe violations
   ✓  7 [desktop] › desk.spec.ts:13:3 › signals: renders, no horizontal overflow, no serious axe violations
@@ -82,27 +85,29 @@ $ npm run e2e
   ✓  12 [mobile] › desk.spec.ts:13:3 › momentum/c-mer: renders, no horizontal overflow, no serious axe violations
   ✓  13 [desktop] › desk.spec.ts:13:3 › trust: renders, no horizontal overflow, no serious axe violations
   ✓  14 [mobile] › desk.spec.ts:13:3 › trust: renders, no horizontal overflow, no serious axe violations
-  ✓  15 [desktop] › desk.spec.ts:13:3 › value: renders, no horizontal overflow, no serious axe violations
   ✓  16 [mobile] › desk.spec.ts:13:3 › value: renders, no horizontal overflow, no serious axe violations
-  ✓  17 [desktop] › desk.spec.ts:26:1 › weekly desk shows three lanes and 8 of 9 slots
-  ✓  18 [mobile] › desk.spec.ts:26:1 › weekly desk shows three lanes and 8 of 9 slots
-  ✓  19 [desktop] › desk.spec.ts:33:1 › capacity overflow blocks reactivation until the campaign moves lanes
-  ✓  20 [mobile] › desk.spec.ts:33:1 › capacity overflow blocks reactivation until the campaign moves lanes
-  ✓  21 [desktop] › desk.spec.ts:43:1 › public-affiliation route is blocked; verified synthetic route prepares a ticket
-  ✓  22 [mobile] › desk.spec.ts:43:1 › public-affiliation route is blocked; verified synthetic route prepares a ticket
-  ✓  23 [desktop] › desk.spec.ts:55:1 › signals: stale is rejected, duplicates refused, input is data
+  ✓  15 [desktop] › desk.spec.ts:13:3 › value: renders, no horizontal overflow, no serious axe violations
+  ✓  17 [mobile] › desk.spec.ts:26:1 › weekly desk shows three lanes and 8 of 9 slots
+  ✓  18 [desktop] › desk.spec.ts:26:1 › weekly desk shows three lanes and 8 of 9 slots
+  ✓  19 [mobile] › desk.spec.ts:33:1 › capacity overflow blocks reactivation until the campaign moves lanes
+  ✓  20 [desktop] › desk.spec.ts:33:1 › capacity overflow blocks reactivation until the campaign moves lanes
+  ✓  22 [desktop] › desk.spec.ts:43:1 › public-affiliation route is blocked; verified synthetic route prepares a ticket
+  ✓  21 [mobile] › desk.spec.ts:43:1 › public-affiliation route is blocked; verified synthetic route prepares a ticket
   ✓  24 [mobile] › desk.spec.ts:55:1 › signals: stale is rejected, duplicates refused, input is data
-  ✓  25 [desktop] › desk.spec.ts:67:1 › brief: five-sentence boundary and relationship overclaim block readiness
-  ✓  26 [mobile] › desk.spec.ts:67:1 › brief: five-sentence boundary and relationship overclaim block readiness
+  ✓  23 [desktop] › desk.spec.ts:55:1 › signals: stale is rejected, duplicates refused, input is data
+  ✓  26 [desktop] › desk.spec.ts:67:1 › brief: five-sentence boundary and relationship overclaim block readiness
+  ✓  25 [mobile] › desk.spec.ts:67:1 › brief: five-sentence boundary and relationship overclaim block readiness
   ✓  27 [desktop] › desk.spec.ts:79:1 › brief and desk exports keep provenance and strip internal fields in share mode
   ✓  28 [mobile] › desk.spec.ts:79:1 › brief and desk exports keep provenance and strip internal fields in share mode
-  ✓  29 [desktop] › desk.spec.ts:96:1 › stalled campaign is fixed by assigning owner and dated next step, and state persists then resets
   ✓  30 [mobile] › desk.spec.ts:96:1 › stalled campaign is fixed by assigning owner and dated next step, and state persists then resets
-  ✓  31 [desktop] › desk.spec.ts:113:1 › keyboard: skip link and rail navigation work without a mouse
-  ✓  32 [mobile] › desk.spec.ts:113:1 › keyboard: skip link and rail navigation work without a mouse
-  ✓  33 [desktop] › desk.spec.ts:126:1 › trust page reports numerators, denominators and CRM gaps
-  ✓  34 [mobile] › desk.spec.ts:126:1 › trust page reports numerators, denominators and CRM gaps
-  34 passed
+  ✓  29 [desktop] › desk.spec.ts:96:1 › stalled campaign is fixed by assigning owner and dated next step, and state persists then resets
+  ✓  31 [mobile] › desk.spec.ts:113:1 › keyboard: skip link and rail navigation work without a mouse
+  ✓  32 [desktop] › desk.spec.ts:113:1 › keyboard: skip link and rail navigation work without a mouse
+  ✓  33 [mobile] › desk.spec.ts:126:1 › trust page reports numerators, denominators and CRM gaps
+  ✓  34 [desktop] › desk.spec.ts:126:1 › trust page reports numerators, denominators and CRM gaps
+  ✓  35 [mobile] › desk.spec.ts:132:1 › incomplete evidence shows coverage and does not outrank evidenced campaigns
+  ✓  36 [desktop] › desk.spec.ts:132:1 › incomplete evidence shows coverage and does not outrank evidenced campaigns
+  36 passed
 ```
 
 ## Not yet run
@@ -113,17 +118,18 @@ $ npm run e2e
 
 ## Walkthrough video validation (2026-10-06)
 
-File: `docs/video/strategic-account-desk-walkthrough.mp4`. Output of `ffprobe` and `ffmpeg` filters on the final file:
+File: `docs/video/strategic-account-desk-walkthrough.mp4` (re-rendered after the scoring fix and the "weekly view" wording change). Output of `ffprobe` and `ffmpeg` filters on the final file:
 
 ```
-stream|codec_name=h264|codec_type=video|width=1080|height=1920
-stream|codec_name=aac|codec_type=audio|sample_rate=44100
-format|duration=136.696000|size=29466530
-volumedetect: mean_volume -17.4 dB, max_volume 0.0 dB
-silencedetect (-45 dB, >=1.0 s): one gap, 110.185 to 111.2 s (1.02 s, scene change)
+stream|codec_type=video|width=1080|height=1920
+stream|codec_type=audio
+format|duration=143.895000|size=30873293
+volumedetect: mean_volume -17.6 dB, max_volume -0.0 dB
+silencedetect (-45 dB, >=1.0 s): one gap, 114.266 to 115.293 s (1.03 s, scene change)
+grep -c "Monday" captions: 0
 ```
 
-- Footage: real rendered UI recorded from a fresh demo state, highlighted cursor driven by real mouse events, cursor-centred zoom-ins on seven moments.
-- Captions: 49 cues burned in, generated from the same narration text as the audio; also shipped as `.srt`.
-- Frames sampled at 12, 26, 38, 47, 52, 57, 66, 82, 87, 90, 97, 103.8, 107, 110.6, 120 and 130 s and inspected: capacity move to 9 of 9, blocked public-affiliation route toast, verified route ticket and cooldown, stale signal, brief gaps on an overclaim then recompose, stalled campaign moved to Find route, 8 of 8 trust tests and denominators, first 30 days.
+- Footage: real rendered UI recorded from a fresh demo state, highlighted cursor driven by real mouse events, cursor-centred zoom-ins on eight moments, including Kestrel's "Coverage 28% · 2 unknown".
+- Captions: 51 cues burned in, generated from the same narration text as the audio; also shipped as `.srt`.
+- Frames sampled and inspected: desk with coverage tags, Kestrel coverage zoom, capacity move to 9 of 9, blocked route toast, verified route ticket and cooldown, stale signal, brief gaps then recompose, stall moved to Find route, 9 of 9 trust tests and denominators, first 30 days.
 - Container tags hold no encoder, path or tool strings.

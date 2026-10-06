@@ -121,7 +121,7 @@ describe('campaign state machine', () => {
 describe('trust, metrics and export', () => {
   it('passes every trust test on the seeded desk', () => {
     const t = runTrustTests(s);
-    expect(t).toHaveLength(8);
+    expect(t).toHaveLength(9);
     t.forEach((x) => expect(x.pass, x.name).toBe(true));
   });
   it('reports denominators and refuses CRM outcomes', () => {
@@ -153,5 +153,30 @@ describe('local state', () => {
     expect(load(st).campaigns.find((c) => c.id === 'c-mer')!.ownerId).toBeNull();
     mem.set(STORAGE_KEY, '{bad json');
     expect(load(st).campaigns).toHaveLength(9);
+  });
+});
+
+describe('incomplete evidence', () => {
+  it('unknown parts add nothing and never outrank evidenced campaigns', () => {
+        const k = priority(s, camp('c-kest'));
+    expect(k.parts.timing.value).toBeNull();
+    expect(k.parts.route.value).toBeNull();
+    expect(k.value).toBe(28);
+    expect(k.coverage).toBe(0.28);
+    expect(k.unknown).toEqual(['timing', 'route']);
+    for (const id of ['c-bright', 'c-jpmc']) expect(priority(s, camp(id)).value!).toBeGreaterThan(k.value!);
+  });
+  it('removing evidence cannot raise priority or coverage', () => {
+        for (const c of s.campaigns) {
+      const full = priority(s, c);
+      const less = priority({ ...s, signals: s.signals.filter((x) => x.accountId !== c.accountId), routes: s.routes.filter((x) => x.accountId !== c.accountId) }, c);
+      expect(less.value ?? 0).toBeLessThanOrEqual(full.value ?? 0);
+      expect(less.coverage).toBeLessThanOrEqual(full.coverage);
+    }
+  });
+  it('fit counts unknown factors as unearned and reports coverage', () => {
+    const f = fitScore(ACCOUNTS.find((a) => a.id === 'jpmc')!);
+    expect(f.value).toBe(85);
+    expect(f.coverage).toBe(0.85);
   });
 });

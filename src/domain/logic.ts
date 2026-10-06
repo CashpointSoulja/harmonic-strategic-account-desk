@@ -104,7 +104,8 @@ export function bestRoute(state: DeskState, accountId: string): Route | null {
 export const FIT_WEIGHTS = { regulated: 30, publishedAiAdoption: 30, enterpriseScale: 25, sensitiveData: 15 } as const;
 export const PRIORITY_WEIGHTS = { fit: 0.4, timing: 0.35, route: 0.25 } as const;
 
-export type Score = { value: number | null; basis: string };
+/** coverage: share (0-1) of this component's weight that is backed by evidence. */
+export type Score = { value: number | null; basis: string; coverage: number };
 
 export function fitScore(a: Account): Score {
   let known = 0;
@@ -116,32 +117,43 @@ export function fitScore(a: Account): Score {
     known += w;
     if (v) got += w;
   }
-  if (known < 50) return { value: null, basis: `Unknown: only ${known} of 100 weight points are evidenced.` };
-  return { value: Math.round((got / known) * 100), basis: `${got} of ${known} known weight points${unknown.length ? `; unknown: ${unknown.join(', ')}` : ''}.` };
+  const coverage = known / 100;
+  if (known < 50) return { value: null, coverage, basis: `Unknown: only ${known} of 100 weight points are evidenced.` };
+  return { value: got, coverage, basis: `${got} of 100 points evidenced (${known} known)${unknown.length ? `; unknown, scored nothing: ${unknown.join(', ')}` : ''}.` };
 }
 
 export function timingScore(state: DeskState, accountId: string): Score {
   const s = bestSignal(state, accountId);
-  if (!s) return { value: null, basis: 'Unknown: no fresh, sourced signal.' };
+  if (!s) return { value: null, coverage: 0, basis: 'Unknown: no fresh, sourced signal.' };
   const v = judgeSignal(s, state.today);
-  return { value: Math.round(s.relevance * 20 * (0.5 + 0.5 * v.freshness)), basis: `Relevance ${s.relevance}/5 × freshness ${Math.round(v.freshness * 100)}% (${s.headline}).` };
+  return { value: Math.round(s.relevance * 20 * (0.5 + 0.5 * v.freshness)), coverage: 1, basis: `Relevance ${s.relevance}/5 × freshness ${Math.round(v.freshness * 100)}% (${s.headline}).` };
 }
 
 export function routeReadiness(state: DeskState, accountId: string): Score {
   const r = bestRoute(state, accountId);
-  if (!r) return { value: null, basis: 'Unknown: no route candidate mapped.' };
-  return { value: routeScore(r, state.today), basis: `${basisLabel[r.basis]}${r.synthetic ? ' (synthetic)' : ''}: ${r.introducer}.` };
+  if (!r) return { value: null, coverage: 0, basis: 'Unknown: no route candidate mapped.' };
+  return { value: routeScore(r, state.today), coverage: 1, basis: `${basisLabel[r.basis]}${r.synthetic ? ' (synthetic)' : ''}: ${r.introducer}.` };
 }
 
-export function priority(state: DeskState, c: Campaign): { value: number | null; parts: { fit: Score; timing: Score; route: Score }; reasons: string[] } {
+export type Priority = { value: number | null; coverage: number; unknown: string[]; parts: { fit: Score; timing: Score; route: Score }; reasons: string[] };
+
+/**
+ * Unknown parts contribute nothing and the known weights are not rescaled, so an
+ * account with missing evidence can never outrank the same account with that evidence.
+ * coverage is the share of the total weight that is evidenced.
+ */
+export function priority(state: DeskState, c: Campaign): Priority {
   const a = accountById(c.accountId);
   const parts = { fit: fitScore(a), timing: timingScore(state, a.id), route: routeReadiness(state, a.id) };
-  let w = 0;
+  let coverage = 0;
   let sum = 0;
+  let anyKnown = false;
+  const unknown: string[] = [];
   for (const k of ['fit', 'timing', 'route'] as const) {
     const v = parts[k].value;
-    if (v === null) continue;
-    w += PRIORITY_WEIGHTS[k];
+    if (v === null) { unknown.push(k); continue; }
+    anyKnown = true;
+    coverage += PRIORITY_WEIGHTS[k] * parts[k].coverage;
     sum += PRIORITY_WEIGHTS[k] * v;
   }
   const reasons: string[] = [];
@@ -151,7 +163,8 @@ export function priority(state: DeskState, c: Campaign): { value: number | null;
   const f = campaignFlags(state, c);
   if (f.overdue) reasons.push('Overdue next step');
   if (parts.timing.value === null) reasons.push('No usable trigger');
-  return { value: w === 0 ? null : Math.round(sum / w), parts, reasons };
+  if (parts.route.value === null) reasons.push('No route mapped');
+  return { value: anyKnown ? Math.round(sum) : null, coverage: Math.round(coverage * 100) / 100, unknown, parts, reasons };
 }
 
 /* ---------- Campaigns ---------- */
@@ -344,7 +357,7 @@ export function exportDesk(state: DeskState, mode: ExportMode): string {
     const a = accountById(c.accountId);
     const p = priority(state, c);
     lines.push(`## ${a.name}${a.synthetic ? ' [SYNTHETIC]' : ' [PUBLIC SOURCES · PROSPECT HYPOTHESIS]'}`);
-    lines.push(`Seller: ${SELLERS.find((s) => s.id === c.sellerId)!.label} · Stage: ${stageLabel[c.stage]} · Priority: ${p.value ?? 'unknown'} (fit ${p.parts.fit.value ?? 'unknown'}, timing ${p.parts.timing.value ?? 'unknown'}, route ${p.parts.route.value ?? 'unknown'})`);
+    lines.push(`Seller: ${SELLERS.find((s) => s.id === c.sellerId)!.label} · Stage: ${stageLabel[c.stage]} · Priority: ${p.value ?? 'unknown'} · evidence coverage ${Math.round(p.coverage * 100)}%${p.unknown.length ? ` · unknown: ${p.unknown.join(', ')}` : ''} (fit ${p.parts.fit.value ?? 'unknown'}, timing ${p.parts.timing.value ?? 'unknown'}, route ${p.parts.route.value ?? 'unknown'})`);
     lines.push(`Next: ${c.nextAction ?? 'none'} · Owner: ${personLabel(c.ownerId) ?? 'none'} · Due: ${c.nextActionDate ?? 'none'}`);
     for (const s of state.stakeholders.filter((x) => x.accountId === a.id)) {
       const name = s.publicName && !(mode === 'share' && s.uncertain) ? ` (${s.publicName}, published)` : '';

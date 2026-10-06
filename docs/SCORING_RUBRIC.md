@@ -11,7 +11,7 @@ Code: `fitScore`, `timingScore`, `routeScore`, `priority` in `src/domain/logic.t
 | Enterprise scale | 25 |
 | Sensitive data handled | 15 |
 
-Fit = points earned ÷ points known × 100. Unknown factors are excluded. If fewer than 50 points are known, Fit is **Unknown**.
+Fit = points earned out of 100. Unknown factors earn nothing and are not rescaled away. If fewer than 50 points are known, Fit is **Unknown**. Fit coverage = points known ÷ 100.
 
 ## Timing (0–100 or Unknown)
 
@@ -23,12 +23,14 @@ Basis: verified relationship 40, public affiliation 15, hypothesis 5. +20 each f
 
 ## Priority
 
-Priority = (0.40 × fit + 0.35 × timing + 0.25 × route) ÷ (sum of weights of the known parts). If all three are unknown, Priority is Unknown. Priority orders work; it is not a forecast.
+Priority = 0.40 × fit + 0.35 × timing + 0.25 × route, where an Unknown part contributes nothing. Known weights are **not** rescaled, so a campaign with missing evidence can never outrank the same campaign with that evidence. If all three are unknown, Priority is Unknown. Priority orders work; it is not a forecast.
+
+Evidence coverage = 0.40 × fit coverage + 0.35 × (timing known ? 1 : 0) + 0.25 × (route known ? 1 : 0). It is shown beside every priority on the desk and in exports, with the count of Unknown parts. Earlier builds averaged over known parts only; that let Kestrel (fit only) show 100 and top its lane, which was wrong.
 
 ## Worked examples (desk date 2026-10-06)
 
-**Brightwater Financial (synthetic).** Fit: 100 of 100 known → 100. Timing: "New CISO appointed" dated 2026-09-22, relevance 4, shelf life 120, age 14, freshness 0.883 → 4 × 20 × 0.942 = 75. Route: verified 40 + 20 + 20 + 20 = 100. Priority = (40 + 26.25 + 25) ÷ 1.0 = 91.
+**Brightwater Financial (synthetic).** Fit: 100 of 100 known → 100, coverage 100%. Timing: "New CISO appointed" dated 2026-09-22, relevance 4, shelf life 120, age 14, freshness 0.883 → 4 × 20 × 0.942 = 75. Route: verified 40 + 20 + 20 + 20 = 100. Priority = 40 + 26.25 + 25 = 91. Coverage 100%.
 
-**Kestrel Aerospace (synthetic).** Fit: published AI adoption unknown → 70 of 70 known → 100. Timing: only signal dated 2026-02-14 with 60-day shelf life → stale → Unknown. Route: none → Unknown. Priority = 40 ÷ 0.4 = 100, flagged "No usable trigger" and "No next step". This is deliberate: a strong-fit account with no trigger and no route ranks high as *work to do*, and the flags say what work.
+**Kestrel Aerospace (synthetic).** Fit: published AI adoption unknown → 70 points earned of 100 (70 known) → 70, coverage 70%. Timing: only signal dated 2026-02-14 with 60-day shelf life → stale → Unknown. Route: none → Unknown. Priority = 0.40 × 70 = 28. Coverage = 0.40 × 0.70 = 28%, 2 unknown. It sits at the bottom of Seller B's lane, flagged "No usable trigger", "No route mapped" and "No next step", so the missing evidence reads as work to do, not as readiness.
 
-**JPMorganChase (real, prospect hypothesis).** Fit: sensitive data unknown → 85 of 85 known → 100. Timing: the desk picks the usable signal with the highest relevance × freshness. The Technology page's Cybersecurity Month content (relevance 3, read on the desk date, freshness 100%) wins → 3 × 20 × 1.0 = 60. The 2025 CISO supplier letter is stale and scores nothing. Route: public affiliation only, no checks → 15. Priority = (0.40 × 100 + 0.35 × 60 + 0.25 × 15) ÷ 1.0 = 64.75 → 65, as shown on the desk.
+**JPMorganChase (real, prospect hypothesis).** Fit: sensitive data unknown → 85 of 100 (85 known) → 85, coverage 85%. Timing: the desk picks the usable signal with the highest relevance × freshness. The Technology page's Cybersecurity Month content (relevance 3, read on the desk date, freshness 100%) wins → 3 × 20 × 1.0 = 60. The 2025 CISO supplier letter is stale and scores nothing. Route: public affiliation only, no checks → 15. Priority = 0.40 × 85 + 0.35 × 60 + 0.25 × 15 = 58.75 → 59. Coverage = 0.34 + 0.35 + 0.25 = 94%, 0 unknown parts.

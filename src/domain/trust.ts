@@ -1,4 +1,4 @@
-import { canAdvance, dedupeEvidence, dedupeSignals, exportBrief, exportDesk, judgeSignal, routeGate, validateBriefText } from './logic';
+import { canAdvance, dedupeEvidence, dedupeSignals, exportBrief, exportDesk, judgeSignal, priority, routeGate, validateBriefText } from './logic';
 import type { DeskState, Route } from './types';
 
 export type TrustResult = { id: string; name: string; pass: boolean; detail: string };
@@ -76,6 +76,18 @@ export function runTrustTests(state: DeskState): TrustResult[] {
     id: 'input-is-data', name: 'Input is data, not instructions',
     pass: judgeSignal(injected, state.today).status === 'unsupported' && !exportDesk({ ...state, signals: [...state.signals, injected] }, 'share').includes(state.routes[0].internalNote),
     detail: 'An instruction-shaped signal is stored as text, rejected as unsupported, and does not change share mode.',
+  });
+
+  const active = state.campaigns.filter((c) => c.stage !== 'parked');
+  const inflated = active.filter((c) => {
+    const full = priority(state, c);
+    const stripped = priority({ ...state, signals: state.signals.filter((s) => s.accountId !== c.accountId), routes: state.routes.filter((r) => r.accountId !== c.accountId) }, c);
+    return (stripped.value ?? 0) > (full.value ?? 0) || stripped.coverage > full.coverage;
+  });
+  out.push({
+    id: 'incomplete-evidence', name: 'Incomplete evidence never ranks higher',
+    pass: inflated.length === 0,
+    detail: `Removing each account's signals and routes never raised its priority or coverage: ${active.length - inflated.length} of ${active.length} active campaigns hold.`,
   });
 
   return out;

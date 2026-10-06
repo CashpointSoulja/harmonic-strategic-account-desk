@@ -119,7 +119,7 @@ test('keyboard: skip link and rail navigation work without a mouse', async ({ pa
   const trust = page.getByRole('link', { name: 'Trust & metrics' });
   await trust.focus();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('heading', { name: /Trust tests: 8 of 8 pass/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Trust tests: 9 of 9 pass/ })).toBeVisible();
   await expect(page).toHaveURL(/#\/trust$/);
 });
 
@@ -127,4 +127,14 @@ test('trust page reports numerators, denominators and CRM gaps', async ({ page }
   await page.goto('./#/trust');
   await expect(page.getByRole('row', { name: /owner and dated next step/ })).toContainText('6 / 8');
   await expect(page.getByRole('row', { name: /Executive meetings sourced/ })).toContainText('Not measured');
+});
+
+test('incomplete evidence shows coverage and does not outrank evidenced campaigns', async ({ page }) => {
+  await page.goto('/#/desk');
+  const kest = page.getByLabel('Kestrel Aerospace');
+  await expect(kest.getByLabel('Priority 28')).toBeVisible();
+  await expect(kest.getByText('Coverage 28% · 2 unknown')).toBeVisible();
+  await expect(kest.getByText('Unknown').first()).toBeVisible();
+  await expect(page.getByLabel('Brightwater Financial').getByText('Coverage 100%')).toBeVisible();
+  await expect(page.getByLabel('JPMorganChase').getByLabel('Priority 59')).toBeVisible();
 });

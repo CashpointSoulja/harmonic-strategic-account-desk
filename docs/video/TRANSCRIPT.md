@@ -1,10 +1,10 @@
 # Walkthrough transcript
 
-Vertical walkthrough, 1080x1920, 2:17, H.264 + AAC, burned-in captions (also in `strategic-account-desk-walkthrough.srt`). Real UI footage of the built desk at a 540px CSS viewport rendered at 2x, recorded from a fresh demo state. Narration is synthetic text-to-speech.
+Vertical walkthrough, 1080x1920, 2:24, H.264 + AAC, burned-in captions (also in `strategic-account-desk-walkthrough.srt`). Real UI footage of the built desk at a 540px CSS viewport rendered at 2x, recorded from a fresh demo state. Narration is synthetic text-to-speech.
 
 ## Weekly desk
 
-This is the Strategic Account Desk, an independent concept I built for Harmonic's Strategic GTM Associate role. It's the Monday view: three seller lanes, three slots each, eight of nine active. Fit, timing and route readiness are scored separately, and unknown stays unknown.
+This is the Strategic Account Desk, an independent concept I built for Harmonic's Strategic GTM Associate role. It's the weekly view: three seller lanes, three slots each, eight of nine active. Fit, timing and route readiness are scored separately. Unknown stays unknown, adds nothing, and evidence coverage sits beside every score.
 
 ## Nine-slot capacity
 
@@ -36,7 +36,7 @@ Meridian stalled after an event because no one owned the follow-up. It can't res
 
 ## Trust tests and denominators
 
-The trust page tries to break the desk's own rules against live state. All eight tests pass. Every measure shows its numerator, denominator and window. Meetings and pipeline say not measured, because they need CRM data.
+The trust page tries to break the desk's own rules against live state. All nine tests pass, including one proving missing evidence never lifts a score. Every measure shows its numerator, denominator and window. Meetings and pipeline say not measured, because they need CRM data.
 
 ## Value and first 30 days
 

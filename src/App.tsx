@@ -163,10 +163,10 @@ function DeskView({ state, setState, say }: P) {
             </ul>
           )}
         </Section>
-        <Section title="How priority is scored" kicker="Weights are fixed and visible. Missing components are left out, not scored zero." id="weights">
+        <Section title="How priority is scored" kicker="Weights are fixed and visible. Unknown parts stay Unknown, add nothing, and lower evidence coverage." id="weights">
           <ul className="list">
-            <li><strong>Priority</strong> = fit ×{PRIORITY_WEIGHTS.fit} + timing ×{PRIORITY_WEIGHTS.timing} + route ×{PRIORITY_WEIGHTS.route}, averaged over known parts.</li>
-            <li><strong>Fit</strong>: regulated {FIT_WEIGHTS.regulated}, published AI adoption {FIT_WEIGHTS.publishedAiAdoption}, enterprise scale {FIT_WEIGHTS.enterpriseScale}, sensitive data {FIT_WEIGHTS.sensitiveData}. Under 50 evidenced points is Unknown.</li>
+            <li><strong>Priority</strong> = fit ×{PRIORITY_WEIGHTS.fit} + timing ×{PRIORITY_WEIGHTS.timing} + route ×{PRIORITY_WEIGHTS.route}. Unknown parts add nothing and the other weights are not scaled up, so missing evidence can never lift a campaign. Coverage shows how much of the weight is evidenced.</li>
+            <li><strong>Fit</strong>: regulated {FIT_WEIGHTS.regulated}, published AI adoption {FIT_WEIGHTS.publishedAiAdoption}, enterprise scale {FIT_WEIGHTS.enterpriseScale}, sensitive data {FIT_WEIGHTS.sensitiveData}. Fit is points earned out of 100; unknown factors earn nothing. Under 50 known points is Unknown.</li>
             <li><strong>Timing</strong>: best usable signal, relevance × 20 × (0.5 + 0.5 × freshness). Stale or unsourced signals score nothing.</li>
             <li><strong>Route</strong>: verified 40, public affiliation 15, hypothesis 5; +20 each for relationship, permission and recipient; −30 in the 30-day ask cooldown.</li>
           </ul>
@@ -185,7 +185,14 @@ function CampaignCard({ c, state, setState, say }: { c: Campaign } & Omit<P, 'ar
     <article className={`camp ${c.stage === 'stalled' ? 'is-stalled' : ''} ${parked ? 'is-parked' : ''}`} aria-label={a.name}>
       <div className="camp-top">
         <a className="camp-name" href={`#/account/${a.id}`}>{a.name}</a>
-        <span className="prio" aria-label={`Priority ${p.value ?? 'unknown'}`}>{p.value ?? '?'}</span>
+        <span className="prio-wrap">
+          <span className="prio" aria-label={`Priority ${p.value ?? 'unknown'}`}>{p.value ?? '?'}</span>
+          {!parked && (
+            <span className={`coverage-tag ${p.coverage < 1 ? 'is-partial' : ''}`} title={p.unknown.length ? `Unknown: ${p.unknown.join(', ')}` : 'All parts evidenced'}>
+              Coverage {Math.round(p.coverage * 100)}%{p.unknown.length ? ` · ${p.unknown.length} unknown` : ''}
+            </span>
+          )}
+        </span>
       </div>
       <div className="chips">
         <ProvenanceChip synthetic={a.synthetic} />
