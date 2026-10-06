@@ -1,0 +1,3 @@
+# 30-second explanation
+
+Harmonic's strategic sellers win top accounts through trusted introductions and executive moments, not cold email. The associate's job is to keep about nine of those campaigns honest. This desk shows the week across three sellers, maps each buying committee with sourced evidence, ranks warm routes but refuses to request an introduction until the relationship, the introducer's permission and the recipient are verified, rejects stale or unsourced signals as reasons to reach out, writes an exactly-five-sentence brief that states its uncertainty, and reports progress with real denominators. It sends nothing. It is an independent concept by Ayo Ahmed, not affiliated with Harmonic Security.

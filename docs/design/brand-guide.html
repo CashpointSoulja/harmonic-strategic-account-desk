@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visual brand guide · Strategic Account Desk</title>
+<style>
+  @font-face { font-family: Poppins; font-weight: 400; src: url('../../src/fonts/poppins-latin-400-normal.woff2') format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 600; src: url('../../src/fonts/poppins-latin-600-normal.woff2') format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 700; src: url('../../src/fonts/poppins-latin-700-normal.woff2') format('woff2'); }
+  body { margin: 0; font-family: Poppins, system-ui, sans-serif; background: #efefef; color: #121212; }
+  header { background: #121212; color: #fff; padding: 18px 28px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  header img { height: 28px; }
+  header p { margin: 0; font-size: 12px; color: #d6d6d6; }
+  main { max-width: 1100px; margin: 0 auto; padding: 28px; }
+  h1 { font-size: 40px; margin: 0 0 6px; }
+  h2 { font-size: 20px; margin: 32px 0 12px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .sw { border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid #e2e2e2; font-size: 13px; }
+  .sw div { height: 72px; }
+  .sw p { margin: 8px 10px; }
+  .card { background: #fff; border: 1px solid #e2e2e2; border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+  .pill { display: inline-block; border-radius: 8px; padding: 2px 9px; font-size: 12px; font-weight: 600; margin: 2px; }
+  .btn { display: inline-block; border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px; border: 1px solid #cfcfcf; background: #fff; margin: 2px; }
+  .refs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+  .refs img { width: 100%; border-radius: 10px; border: 1px solid #ddd; }
+  .rail { background: #121212; color: #fff; display: inline-flex; flex-direction: column; gap: 6px; padding: 10px 6px; border-radius: 12px; }
+  .rail span { padding: 10px; border-radius: 12px; font-size: 12px; font-weight: 600; border: 2px solid transparent; text-align: center; }
+  .rail .on { background: #043a3a; border-color: #4eff79; }
+  .strip { background: #e6f7f1; color: #0a4f4f; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  small { color: #555; }
+</style>
+</head>
+<body>
+<header>
+  <img src="../../public/assets/brand/Harmonic-Logo-White.svg" alt="Harmonic Security" />
+  <strong>Strategic Account Desk · visual brand guide</strong>
+  <p>Independent concept by Ayo Ahmed. Not affiliated with or endorsed by Harmonic Security.</p>
+</header>
+<main>
+  <h1>Visual brand guide</h1>
+  <p>Built from Harmonic Security's live site and product console, read on 2026-10-06. Token values are exact; see BRAND_SHEET.md and DESIGN_SCRAPE.md for sources.</p>
+
+  <h2>Logo</h2>
+  <div class="card" style="display:flex;gap:24px;flex-wrap:wrap;align-items:center">
+    <div style="background:#121212;padding:18px;border-radius:10px"><img src="../../public/assets/brand/Harmonic-Logo-White.svg" alt="White logo on #121212" height="28" /></div>
+    <div style="background:#fff;padding:18px;border-radius:10px;border:1px solid #ddd"><img src="../../public/assets/brand/Harmonic-Logo-Black.svg" alt="Black logo on white" height="28" /></div>
+    <div style="background:#efefef;padding:18px;border-radius:10px;border:1px solid #ddd"><img src="../../public/assets/brand/Harmonic-Logo-Racing-Green.svg" alt="Racing green logo on beige" height="28" /></div>
+    <small>App header uses the white logo, top-left, 28 px tall, unmodified.</small>
+  </div>
+
+  <h2>Colour</h2>
+  <div class="grid">
+    <div class="sw"><div style="background:#121212"></div><p><b>#121212</b><br />Header, rail</p></div>
+    <div class="sw"><div style="background:#043a3a"></div><p><b>#043a3a</b><br />Dark green: active, badges</p></div>
+    <div class="sw"><div style="background:#032b2b"></div><p><b>#032b2b</b><br />Site body (reference)</p></div>
+    <div class="sw"><div style="background:#4eff79"></div><p><b>#4eff79</b><br />Kryptonite: primary CTA</p></div>
+    <div class="sw"><div style="background:#0a7979"></div><p><b>#0a7979</b><br />Teal: scores, focus</p></div>
+    <div class="sw"><div style="background:#efefef"></div><p><b>#efefef</b><br />Canvas</p></div>
+    <div class="sw"><div style="background:#7c8dfc"></div><p><b>#7c8dfc</b><br />Purple: chip ring only</p></div>
+    <div class="sw"><div style="background:#3540a8"></div><p><b>#3540a8</b><br />Link text (AA-safe purple)</p></div>
+    <div class="sw"><div style="background:#ff4f01"></div><p><b>#ff4f01</b><br />Orange: stalls, gaps</p></div>
+    <div class="sw"><div style="background:#ffa300"></div><p><b>#ffa300</b><br />Yellow (reference)</p></div>
+    <div class="sw"><div style="background:#e6f7f1"></div><p><b>#e6f7f1</b><br />Mint strip</p></div>
+    <div class="sw"><div style="background:#444"></div><p><b>#444 / #262626</b><br />Secondary text</p></div>
+  </div>
+
+  <h2>Type: Poppins</h2>
+  <div class="card">
+    <div style="font-size:40px;font-weight:700">This week · 40/700</div>
+    <div style="font-size:19px;font-weight:700">Buying committee · 19/700</div>
+    <div style="font-size:15px">Body copy at 15/400. Who decides, who influences, what we know and how we know it.</div>
+    <div style="font-size:12px;font-weight:600">PILL LABEL · 12/600</div>
+  </div>
+
+  <h2>Components</h2>
+  <div class="card" style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+    <div class="rail"><span>Weekly desk</span><span class="on">Account map</span><span>Warm routes</span></div>
+    <div style="flex:1;min-width:260px">
+      <p class="strip">Synthetic fixtures are marked. Nothing on this desk is ever sent.</p>
+      <p>
+        <span class="pill" style="background:#d3f3df;color:#0b5230">Usable</span>
+        <span class="pill" style="background:#ffe8c2;color:#6e3b00">SLA breach</span>
+        <span class="pill" style="background:#fde0dc;color:#8f1d12">Blocked</span>
+        <span class="pill" style="background:#e3e7ff;color:#2b3591">Find route</span>
+        <span class="pill" style="background:#f3e9ff;color:#5b2a91;border:1px dashed #9a6fd0">Synthetic</span>
+        <span class="pill" style="background:#043a3a;color:#4eff79">Public sources · prospect hypothesis</span>
+      </p>
+      <p>
+        <span class="btn" style="background:#4eff79;border-color:#4eff79">Export</span>
+        <span class="btn" style="background:#043a3a;border-color:#043a3a;color:#fff">Copy brief</span>
+        <span class="btn">Prepare intro request</span>
+        <span class="btn" style="background:#eef0ff;border-color:#eef0ff;color:#2b3591">Open brief</span>
+      </p>
+    </div>
+  </div>
+
+  <h2>Reference captures (Harmonic Security's pages, for comparison)</h2>
+  <div class="refs">
+    <figure><img src="reference/site-d-full.png" alt="Harmonic Security home page, desktop" /><figcaption><small>harmonic.security, desktop</small></figcaption></figure>
+    <figure><img src="reference/explore-UsageExplorer.png" alt="Harmonic interactive console, desktop" /><figcaption><small>explore.harmonic.security, desktop</small></figcaption></figure>
+  </div>
+
+  <h2>The desk, as built</h2>
+  <div class="refs">
+    <figure><img src="../screens/desktop-desk.png" alt="Strategic Account Desk weekly view, desktop" /><figcaption><small>Weekly desk, 1366 px</small></figcaption></figure>
+    <figure><img src="../screens/mobile-desk.png" alt="Strategic Account Desk weekly view, mobile" style="max-width:260px" /><figcaption><small>Weekly desk, 390 px</small></figcaption></figure>
+  </div>
+</main>
+</body>
+</html>
